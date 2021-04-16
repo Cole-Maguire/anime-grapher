@@ -14,10 +14,14 @@ window.onload = () => {
     theme: "neutral"
   })
 
-  document.querySelector("#search-button")
-    .addEventListener('click', async () => {
+  document.querySelector("#search")
+    .addEventListener('submit', async (e: Event) => {
+      e.preventDefault();
+
       animeCache = {}
-      const animeId = Number((document.querySelector("#anime-id") as HTMLInputElement).value)
+      let form = new FormData(e.target as HTMLFormElement);
+      console.log(form)
+      const animeId = form.get("animeId").valueOf() as number;
       const anime = await malQueue.queue(() => getAnime(animeId, 'anime'))
       recurseAnime(anime)
     });
