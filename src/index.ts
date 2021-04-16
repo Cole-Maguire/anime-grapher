@@ -8,7 +8,12 @@ const malQueue: Queue<Work> = new Queue(1000, 2)
 let animeCache: { [mal_id: number]: Work } = {}
 
 window.onload = () => {
-  mermaid.initialize({ startOnLoad: true, securityLevel: 'loose' })
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: 'loose',
+    theme: "neutral"
+  })
+
   document.querySelector("#search-button")
     .addEventListener('click', async () => {
       animeCache = {}
@@ -20,8 +25,6 @@ window.onload = () => {
 }
 
 function renderGraph() {
-  document.querySelector("#mermaid-text").textContent = JSON.stringify(animeCache);
-
   const nodes = Object.values(animeCache)
     .map(anime => mapNode(anime));
 
@@ -37,14 +40,13 @@ function renderGraph() {
   )
 
   const graphText = 'graph LR\n' + nodes.join('\n') + '\n' + Array.from(relations).join('\n')
-  console.log(graphText)
 
   const mermaidOutput = mermaid.mermaidAPI.render('mermaid-graph-inner', graphText);
   document.querySelector('#mermaid-graph').innerHTML = mermaidOutput;
 }
 function mapNode(work: Work) {
   //I hate pretending ASCII is all that exists like this, but Mermaid is picky about what it accepts :(
-  const title = work.title.replace(/[\u{0080}-\u{FFFF}]/gu, "_")
+  const title = work.title.replace(/[\u{0080}-\u{FFFF};]/gu, "_")
 
   if (work.type === 'Manga') {
     return `${work.mal_id}[<img src='${work.image_url}' height='100' width='70' /> <br /> ${title}]`

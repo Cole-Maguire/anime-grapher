@@ -3,25 +3,20 @@
 
 <head>
     <meta charset="utf-8">
-    <style>
-        #main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            height: 100%
-        }
-    </style>
-    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="dist/main.js" defer></script>
 </head>
 
 <body>
-    <h1>Anime graph</h1>
-    Visualize the relationships between anime in a series
-    <div id="main-content">
-        <input id="anime-id">
-        <button id="search-button">Find Anime</button>
-        </textarea>
-        <textarea id="mermaid-text" disabled></textarea>
-    </div>
+    <header>
+        <h1>Anime Grapher</h1>
+        Visualize the relationships between anime in a series, using MyAnimeList
+        <br>
+        <form>
+            <input id="anime-id" placeholder="Enter an anime's MAL URL or ID">
+            <button type="submit" id="search-button">Find Anime</button>
+        </form>
+    </header>
     <div id="mermaid-graph">
         <svg id="mermaid-graph-inner"></svg>
     </div>
