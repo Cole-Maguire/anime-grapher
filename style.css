@@ -51,4 +51,5 @@ button {
 #mermaid-graph {
     height: 100%;
     background-color: white;
+    flex-grow: 1;
 }

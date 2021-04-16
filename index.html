@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
-    <script src="dist/main.js" defer></script>
+    <script src="main.js" defer></script>
 </head>
 
 <body>
@@ -12,9 +12,9 @@
         <h1>Anime Grapher</h1>
         Visualize the relationships between anime in a series, using MyAnimeList
         <br>
-        <form>
-            <input id="anime-id" placeholder="Enter an anime's MAL URL or ID">
-            <button type="submit" id="search-button">Find Anime</button>
+        <form id="search">
+            <input id="anime-id" placeholder="Enter an anime's MAL URL or ID" name="animeId">
+            <button type="submit">Find Anime</button>
         </form>
     </header>
     <div id="mermaid-graph">
