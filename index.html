@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100%
+        }
+    </style>
+    <script src="dist/main.js" defer></script>
+</head>
+
+<body>
+    <h1>Anime graph</h1>
+    Visualize the relationships between anime in a series
+    <div id="main-content">
+        <input id="anime-id">
+        <button id="search-button">Find Anime</button>
+        </textarea>
+        <textarea id="mermaid-text" disabled></textarea>
+    </div>
+    <div id="mermaid-graph">
+        <svg id="mermaid-graph-inner"></svg>
+    </div>
+</body>
+
+</html>
