@@ -56,13 +56,11 @@ function mapNode(work: Work) {
 function mapRelation(parentId: number, relation: Relation): [number, string, number] {
   switch (relation.relation) {
     case 'Sequel':
-      return [parentId, '-->', relation.mal_id]
+      return [parentId, '-->|Sequel|', relation.mal_id]
     case 'Prequel':
-      return [relation.mal_id, '-->', parentId]
+      return [relation.mal_id, '-->|Sequel|', parentId]
     case 'Adaptation':
-      return relation.mal_id > parentId ? [relation.mal_id, '===', parentId] : [parentId, '===', relation.mal_id]
-    case 'Alternative version':
-      return relation.mal_id > parentId ? [relation.mal_id, '-.-|Alternative|', parentId] : [parentId, '-.-|Alternative|', relation.mal_id]
+      return relation.mal_id > parentId ? [relation.mal_id, '===|Adaptation|', parentId] : [parentId, '===|Adaptation|', relation.mal_id]
     case 'Side story':
       return [parentId, '-.->|Side story|', relation.mal_id]
     case 'Summary':
@@ -73,7 +71,7 @@ function mapRelation(parentId: number, relation: Relation): [number, string, num
       return [null, null, null]
 
     default:
-      return relation.mal_id > parentId ? [relation.mal_id, `<-.-|${relation.relation}|`, parentId] : [parentId, `-.->|${relation.relation}|`, relation.mal_id]
+      return relation.mal_id > parentId ? [relation.mal_id, `-.-|${relation.relation}|`, parentId] : [parentId, `-.-|${relation.relation}|`, relation.mal_id]
   }
 }
 
