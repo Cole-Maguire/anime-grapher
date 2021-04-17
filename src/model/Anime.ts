@@ -5,7 +5,11 @@ interface Work {
     image_url: string;
     url: string;
     type: string;
-    related: { [relationName: string]: Relation[] }
+    related: { [relationName: string]: Relation[] };
+    aired: {
+        from: Date;
+        to: Date;
+    };
 }
 
 interface Relation {

@@ -20,7 +20,6 @@ window.onload = () => {
 
       animeCache = {}
       let form = new FormData(e.target as HTMLFormElement);
-      console.log(form)
       const animeId = form.get("animeId").valueOf() as number;
       const anime = await malQueue.queue(() => getAnime(animeId, 'anime'))
       recurseAnime(anime)
@@ -66,7 +65,9 @@ function mapRelation(parentId: number, relation: Relation): [number, string, num
     case 'Prequel':
       return [relation.mal_id, '-->|Sequel|', parentId]
     case 'Adaptation':
-      return relation.mal_id > parentId ? [relation.mal_id, '===|Adaptation|', parentId] : [parentId, '===|Adaptation|', relation.mal_id]
+      const relationDate = animeCache[relation.mal_id].aired.from;
+      const parentDate = animeCache[parentId].aired.from;
+      return relationDate > parentDate ? [relation.mal_id, '===>|Adaptation|', parentId] : [parentId, '===>|Adaptation|', relation.mal_id]
     case 'Side story':
       return [parentId, '-.->|Side story|', relation.mal_id]
     case 'Summary':
