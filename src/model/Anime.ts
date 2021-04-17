@@ -10,15 +10,15 @@ interface Work {
 
 interface Anime extends Work {
     aired: {
-        from: Date;
-        to: Date;
+        from: string;
+        to: string;
     };
 }
 
 interface Manga extends Work {
     published: {
-        from: Date;
-        to: Date;
+        from: string;
+        to: string;
     };
 }
 

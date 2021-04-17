@@ -1,6 +1,10 @@
 import mermaid from 'mermaid'
-import { start } from './malApi';
 import { renderGraph } from './rendering'
+import { mouseOutListener, mouseOverListener, renderTable } from './table'
+import * as MalApi from './malApi';
+
+const mermaidElement = document.querySelector("#mermaid-graph")
+const tableElement = document.querySelector("#work-list")
 
 window.onload = () => {
   mermaid.initialize({
@@ -10,16 +14,24 @@ window.onload = () => {
   })
 
   document.querySelector("#search")
-    .addEventListener('submit', async (e: Event) => {
-      e.preventDefault();
+    .addEventListener('submit', searchListener);
 
-      const form = new FormData(e.target as HTMLFormElement);
-      const mermaidElement = document.querySelector("#mermaid-graph")
-      start(form.get("animeId").toString(),
-        c => { mermaidElement.innerHTML = renderGraph(c) })
-    });
+  tableElement
+    .addEventListener('mouseover', mouseOverListener);
+  tableElement
+    .addEventListener('mouseout', mouseOutListener);
 
 }
 
+async function searchListener(e: Event) {
+  e.preventDefault();
 
+  const form = new FormData(e.target as HTMLFormElement);
+  MalApi.startRecurse(form.get("animeId").toString(),
+    c => {
+      mermaidElement.innerHTML = renderGraph(c);
+      tableElement.innerHTML = '';
+      tableElement.append(...renderTable(c));
+    })
+}
 

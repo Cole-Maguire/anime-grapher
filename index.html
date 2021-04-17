@@ -8,15 +8,22 @@
 </head>
 
 <body>
+    <div id="sidebar">
     <header>
         <h1>Anime Grapher</h1>
         Visualize the relationships between anime in a series, using MyAnimeList
-        <br>
-        <form id="search">
-            <input id="anime-id" placeholder="Enter an anime's MAL URL or ID" name="animeId">
-            <button type="submit">Find Anime</button>
-        </form>
     </header>
+    <form id="search">
+        <input id="anime-id" placeholder="Enter an anime's MAL URL or ID" name="animeId">
+        <button type="submit">Find Anime</button>
+    </form>
+    <div>
+        <h2>All works</h2>
+        <table id="work-list">
+
+        </table>
+    </div>
+    </div>
     <div id="mermaid-graph">
         <svg id="mermaid-graph-inner"></svg>
     </div>
