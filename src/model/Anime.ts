@@ -6,7 +6,17 @@ interface Work {
     url: string;
     type: string;
     related: { [relationName: string]: Relation[] };
+}
+
+interface Anime extends Work {
     aired: {
+        from: Date;
+        to: Date;
+    };
+}
+
+interface Manga extends Work {
+    published: {
         from: Date;
         to: Date;
     };

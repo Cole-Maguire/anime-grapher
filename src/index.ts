@@ -58,6 +58,32 @@ function mapNode(work: Work) {
   }
 }
 
+
+function isAnime(w: Work): w is Anime {
+  return 'aired' in w;
+}
+
+function isManga(w: Work): w is Manga {
+  return 'published' in w;
+}
+
+function getFirstDate(work: Work): Date {
+  if (work === undefined) {
+    return new Date(8640000000000000); // For as yet undefined dates. This is max date in js
+  } else if (isAnime(work)) {
+    return work.aired.from;
+  } else if (isManga(work)) {
+    return work.published.from
+  }
+  throw new Error("Unknown work type");
+}
+
+function dateOrdered(parentId: number, relation: Relation, arrowShape: string): [number, string, number] {
+  const relationDate = getFirstDate(animeCache[relation.mal_id])
+  const parentDate = getFirstDate(animeCache[parentId])
+  return relationDate < parentDate ? [relation.mal_id, arrowShape, parentId] : [parentId, arrowShape, relation.mal_id]
+}
+
 function mapRelation(parentId: number, relation: Relation): [number, string, number] {
   switch (relation.relation) {
     case 'Sequel':
@@ -65,9 +91,7 @@ function mapRelation(parentId: number, relation: Relation): [number, string, num
     case 'Prequel':
       return [relation.mal_id, '-->|Sequel|', parentId]
     case 'Adaptation':
-      const relationDate = animeCache[relation.mal_id].aired.from;
-      const parentDate = animeCache[parentId].aired.from;
-      return relationDate > parentDate ? [relation.mal_id, '===>|Adaptation|', parentId] : [parentId, '===>|Adaptation|', relation.mal_id]
+      return dateOrdered(parentId, relation, '==>|Adaptation|')
     case 'Side story':
       return [parentId, '-.->|Side story|', relation.mal_id]
     case 'Summary':
@@ -78,7 +102,7 @@ function mapRelation(parentId: number, relation: Relation): [number, string, num
       return [null, null, null]
 
     default:
-      return relation.mal_id > parentId ? [relation.mal_id, `-.-|${relation.relation}|`, parentId] : [parentId, `-.-|${relation.relation}|`, relation.mal_id]
+      return dateOrdered(parentId, relation, `-.-|${relation.relation}|`)
   }
 }
 
