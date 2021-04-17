@@ -52,4 +52,5 @@ button {
     height: 100%;
     background-color: white;
     flex-grow: 1;
+    overflow: auto;
 }
