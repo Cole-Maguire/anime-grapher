@@ -43,7 +43,7 @@ async function getWork(id: number, type: string): Promise<Work> {
     }
 }
 
-export async function start(work: string, callback?: (c: WorkCache) => void) {
+export async function startRecurse(work: string, callback?: (c: WorkCache) => void) {
     workCache = {}
     const parsed = parseWorkInput(work)
     const anime = await malQueue.queue(() => getWork(parsed.id, parsed.type))
