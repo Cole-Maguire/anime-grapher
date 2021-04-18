@@ -18,18 +18,15 @@ export function renderGraph(workCache: WorkCache) {
     )
 
     const graphText = 'graph LR\n' + nodes.join('\n') + '\n' + Array.from(relations).join('\n')
-
+    console.log(graphText)
     return mermaid.mermaidAPI.render('mermaid-graph-inner', graphText);
 }
 
 function mapNode(work: Work) {
-    //I hate pretending ASCII is all that exists like this, but Mermaid is picky about what it accepts :(
-    const title = work.title.replace(/[\u{0080}-\u{FFFF};]/gu, "_")
-
     if (work.type === 'Manga') {
-        return `${work.mal_id}[<img src='${work.image_url}' height='100' width='70' /> <br /> ${title}]`
+        return `${work.mal_id}["<img src='${work.image_url}' height='100' width='70' /><br />${work.title}"]`
     } else {
-        return `${work.mal_id}(<img src='${work.image_url}' height='100' width='70' /> <br /> ${title})`
+        return `${work.mal_id}("<img src='${work.image_url}' height='100' width='70' /><br />${work.title}")`
     }
 }
 
