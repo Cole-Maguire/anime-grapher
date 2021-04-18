@@ -31,12 +31,11 @@ function constructElement(work: Work) {
     return tr;
 }
 
-function mouseListener(e: MouseEvent, colour: string): void {
+function mouseSidebar(e: MouseEvent, colour: string): void {
     for (let eTarget of e.composedPath()) {
         let element = (eTarget as HTMLElement);
-        if ('dataset' in element && element.dataset.workId) {
-            const workId = element.dataset.workId
-            const highlightElement: HTMLElement = document.querySelector(`g [id*='flowchart-${workId}-'] rect`);
+        if ('dataset' in element && element.dataset.workId !== undefined) {
+            const highlightElement: HTMLElement = document.querySelector(`g[id*='flowchart-${element.dataset.workId}-'] rect`);
             highlightElement.style.fill = colour
             return;
         }
@@ -44,11 +43,30 @@ function mouseListener(e: MouseEvent, colour: string): void {
     //didn't hover over a useful element
 }
 
-export function mouseOverListener(e: MouseEvent): void {
-    mouseListener(e, '#8FB339')
+function mouseGraph(e: MouseEvent, colour: string): void {
+    for (let eTarget of e.composedPath()) {
+        let element = (eTarget as HTMLElement);
+        const match = element.id ? element.id.match(/flowchart\-(?<id>\d*)\-/) : null;
+        if (match) {
+            const highlightElement: HTMLElement = document.querySelector(`tr[data-work-id="${match.groups.id}"]`);
+            highlightElement.style.backgroundColor = colour
+            return;
+        }
+    }
+    //didn't hover over a useful element
 }
-export function mouseOutListener(e: MouseEvent): void {
-    mouseListener(e, '') // '' as a color not technically legal, but it works
+
+export function mouseOverSidebar(e: MouseEvent): void {
+    mouseSidebar(e, '#8FB339')
+}
+export function mouseOutSidebar(e: MouseEvent): void {
+    mouseSidebar(e, '') // '' as a color not technically legal, but it works
+}
+export function mouseOverGraph(e: MouseEvent): void {
+    mouseGraph(e, '#8FB339')
+}
+export function mouseOutGraph(e: MouseEvent): void {
+    mouseGraph(e, '') // '' as a color not technically legal, but it works
 }
 
 export async function search(e: Event, searchResults: HTMLElement) {

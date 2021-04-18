@@ -72,8 +72,15 @@ ul a:hover {
     overflow: auto;
 }
 
+g[id*='flowchart-'] rect+* {
+    /*filthy dirty hack to prevent flickering as the overlapping objects all hover*/
+    pointer-events: none;
+}
+
+g[id*='flowchart-'] rect:hover,
 tr:hover {
     background-color: #8FB339;
+    fill: #8FB339 !important;
 }
 
 table {
