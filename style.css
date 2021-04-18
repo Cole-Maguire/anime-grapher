@@ -44,6 +44,8 @@ input {
 }
 
 ul {
+    position:fixed;
+    
     list-style-type: none;
     background-color: #F2EFE9;
 
