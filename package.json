@@ -10,11 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/mermaid": "^8.2.4",
-    "mermaid": "^8.9.2",
-    "throttled-queue": "^1.0.7"
+    "mermaid": "^8.9.2"
   },
   "devDependencies": {
+    "@types/mermaid": "^8.2.4",
     "ts-loader": "^8.1.0",
     "typescript": "^4.2.4",
     "webpack": "^4.43.0",
