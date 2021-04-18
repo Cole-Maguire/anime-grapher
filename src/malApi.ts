@@ -64,6 +64,7 @@ export async function startRecurse(work: string, callback?: (c: WorkCache) => vo
     const parsed = parseWorkInput(work)
     const anime = await malQueue.queue(() => getWork(parsed.id, parsed.type))
     recurseWork(anime, callback)
+    callback(workCache); // get in the final render, just in case of single anime franchises, etc.
 }
 
 function parseWorkInput(work: string): { type: string, id: number } {
