@@ -57,13 +57,13 @@ function mouseGraph(e: MouseEvent, colour: string): void {
 }
 
 export function mouseOverSidebar(e: MouseEvent): void {
-    mouseSidebar(e, '#8FB339')
+    mouseSidebar(e, 'var(--highlight)')
 }
 export function mouseOutSidebar(e: MouseEvent): void {
     mouseSidebar(e, '') // '' as a color not technically legal, but it works
 }
 export function mouseOverGraph(e: MouseEvent): void {
-    mouseGraph(e, '#8FB339')
+    mouseGraph(e, 'var(--highlight)')
 }
 export function mouseOutGraph(e: MouseEvent): void {
     mouseGraph(e, '') // '' as a color not technically legal, but it works

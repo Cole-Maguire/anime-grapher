@@ -1,13 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Poppins:wght@300&display=swap');
 
+:root {
+    --light: #F2EFE9;
+    --dark: #2E2B27;
+
+    --main: #D74E09;
+    --main-dark: #944821;
+
+    --highlight: #8FB339;
+}
+
 html {
     height: 100%;
 }
 
 body {
     margin: 0;
-    background-color: #D74E09;
-    color: #F2EFE9;
+    background-color: var(--main);
+    color: var(--light);
     font-family: 'Poppins', sans-serif;
     display: flex;
     height: 100%;
@@ -24,7 +34,7 @@ body {
 h1,
 h2 {
     font-family: 'Dela Gothic One', sans-serif;
-    color: #F2EFE9;
+    color: var(--light);
     margin-bottom: 0;
 }
 
@@ -38,18 +48,18 @@ form>* {
 
 input {
     padding: 5px;
-    background-color: #F2EFE9;
-    border: 1px solid #2E2B27;
+    background-color: var(--light);
+    border: 1px solid var(--dark);
     margin-bottom: 0;
 }
 
 ul {
-    position:fixed;
-    
-    list-style-type: none;
-    background-color: #F2EFE9;
+    position: fixed;
 
-    border: 1px solid #2E2B27;
+    list-style-type: none;
+    background-color: var(--light);
+
+    border: 1px solid var(--dark);
     margin-top: 0;
     border-top: 0;
 }
@@ -60,16 +70,16 @@ ul:empty {
 
 ul a,
 ul a:visited {
-    color: #2E2B27
+    color: var(--dark);
 }
 
 ul a:hover {
-    color: #944821
+    color: var(--main-dark);
 }
 
 #mermaid-graph {
     height: 100%;
-    background-color: #F2EFE9;
+    background-color: var(--light);
     flex-grow: 1;
     overflow: auto;
 }
@@ -81,8 +91,8 @@ g[id*='flowchart-'] rect+* {
 
 g[id*='flowchart-'] rect:hover,
 tr:hover {
-    background-color: #8FB339;
-    fill: #8FB339 !important;
+    background-color: var(--highlight);
+    fill: var(--highlight) !important;
 }
 
 table {
@@ -92,5 +102,5 @@ table {
 
 a,
 a:visited {
-    color: #F2EFE9;
+    color: var(--light);
 }
