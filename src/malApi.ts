@@ -1,11 +1,27 @@
 
 import Queue from './queue'
-
+import Debounce from './debounce'
 const API_URL = "https://api.jikan.moe/v3";
 
 const malQueue: Queue<Work> = new Queue(1000, 2)
+const malDebounce: Debounce<AnimeSearchResult[]> = new Debounce(1000);
 
 let workCache: WorkCache = {}
+
+export async function search(query: string): Promise<AnimeSearchResult[]> {
+    const MAX_SEARCH_RESULTS = 10
+    return malDebounce.debounce(async () => {
+        if (query.length < 4) {
+            // Mal doesn't like searches of less than three characters
+            return Promise.resolve([]);
+        }
+        const raw = await fetch(`${API_URL}/search/anime?q=${query}`)
+        const results = (await raw.json()) as SearchResults
+
+        // Get at most 10 results
+        return results.results.slice(0, Math.min(results.results.length, MAX_SEARCH_RESULTS))
+    })
+}
 
 async function recurseWork(anime: Work, callback?: (c: WorkCache) => void): Promise<void> {
 
@@ -67,4 +83,8 @@ function parseWorkInput(work: string): { type: string, id: number } {
             }
         }
     }
+}
+
+function max(length: number, MAX_SEARCH_RESULTSF: any): number {
+    throw new Error('Function not implemented.');
 }

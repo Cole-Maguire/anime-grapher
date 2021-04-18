@@ -1,5 +1,7 @@
 import { getFirstDate } from "./util";
 
+import * as MalApi from './malApi';
+
 export function renderTable(works: WorkCache): HTMLElement[] {
     return Object.values(works)
         .sort((a, b) => getFirstDate(a).getFullYear() - getFirstDate(b).getFullYear())
@@ -47,4 +49,24 @@ export function mouseOverListener(e: MouseEvent): void {
 }
 export function mouseOutListener(e: MouseEvent): void {
     mouseListener(e, '') // '' as a color not technically legal, but it works
+}
+
+export async function search(e: Event, searchResults: HTMLElement) {
+    const value = (e.target as HTMLInputElement).value
+
+    const results = await MalApi.search(value);
+    searchResults.innerHTML = '';
+    const elements = results.map(constructLink);
+    searchResults.append(...elements)
+}
+
+function constructLink(a: AnimeSearchResult): HTMLElement {
+    const element = document.createElement('a');
+    element.textContent = a.title;
+    element.href = `?work_id=${a.mal_id}`
+
+    const li = document.createElement("li");
+    li.append(element);
+
+    return li;
 }

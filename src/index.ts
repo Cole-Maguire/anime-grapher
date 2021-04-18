@@ -1,37 +1,39 @@
 import mermaid from 'mermaid'
 import { renderGraph } from './rendering'
-import { mouseOutListener, mouseOverListener, renderTable } from './table'
-import * as MalApi from './malApi';
+import * as sidebar from './sidebar'
+import * as malApi from './malApi';
 
-const mermaidElement = document.querySelector("#mermaid-graph")
-const tableElement = document.querySelector("#work-list")
+const graph: HTMLElement = document.querySelector("#mermaid-graph")
+const table: HTMLElement = document.querySelector("#work-list")
+const searchbox: HTMLElement = document.querySelector("input#anime-id")
+const searchResults: HTMLElement = document.querySelector("#search-results")
 
 window.onload = () => {
   mermaid.initialize({
     startOnLoad: true,
     securityLevel: 'loose',
     theme: "neutral"
-  })
+  });
 
-  document.querySelector("#search")
-    .addEventListener('submit', searchListener);
-
-  tableElement
-    .addEventListener('mouseover', mouseOverListener);
-  tableElement
-    .addEventListener('mouseout', mouseOutListener);
-
+  const workId = new URLSearchParams(window.location.search).get("work_id")
+  if (workId) {
+    submitListener(workId)
+  }
+  
+  table
+    .addEventListener('mouseover', sidebar.mouseOverListener);
+  table
+    .addEventListener('mouseout', sidebar.mouseOutListener);
+  searchbox
+    .addEventListener('input', e => sidebar.search(e, searchResults));
 }
 
-async function searchListener(e: Event) {
-  e.preventDefault();
-
-  const form = new FormData(e.target as HTMLFormElement);
-  MalApi.startRecurse(form.get("animeId").toString(),
+async function submitListener(workId: string) {
+  malApi.startRecurse(workId,
     c => {
-      mermaidElement.innerHTML = renderGraph(c);
-      tableElement.innerHTML = '';
-      tableElement.append(...renderTable(c));
+      graph.innerHTML = renderGraph(c);
+      table.innerHTML = '';
+      table.append(...sidebar.renderTable(c));
     })
 }
 

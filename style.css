@@ -30,7 +30,6 @@ h2 {
 
 form {
     display: grid;
-    row-gap: 5px;
 }
 
 form>* {
@@ -39,19 +38,36 @@ form>* {
 
 input {
     padding: 5px;
+    background-color: #F2EFE9;
+    border: 1px solid #2E2B27;
+    margin-bottom: 0;
 }
 
-button {
-    padding: 5px;
-    border: 0;
-    color: #F2EFE9;
-    background-color: #8FB339;
+ul {
+    list-style-type: none;
+    background-color: #F2EFE9;
+
+    border: 1px solid #2E2B27;
+    margin-top: 0;
+    border-top: 0;
 }
 
+ul:empty {
+    visibility: hidden;
+}
+
+ul a,
+ul a:visited {
+    color: #2E2B27
+}
+
+ul a:hover {
+    color: #944821
+}
 
 #mermaid-graph {
     height: 100%;
-    background-color: white;
+    background-color: #F2EFE9;
     flex-grow: 1;
     overflow: auto;
 }

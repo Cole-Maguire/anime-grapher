@@ -30,3 +30,13 @@ interface Relation {
 
     relation?: string //this is something we add in after the fact
 }
+
+interface SearchResults {
+    results: AnimeSearchResult[];
+}
+
+interface AnimeSearchResult {
+    mal_id: number;
+    title: string;
+    image_url: string;
+}
