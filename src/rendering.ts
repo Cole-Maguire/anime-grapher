@@ -37,10 +37,6 @@ function mapRelation(parent: Work, relation: { work: Work, relation: Relation })
             return [parent.mal_id, '-->|Sequel|', relation.relation.mal_id]
         case 'Adaptation':
             return dateOrdered(parent, relation, '==>|Adaptation|')
-        case 'Side story':
-            return [parent.mal_id, '-.->|Side story|', relation.relation.mal_id]
-        case 'Summary':
-            return [parent.mal_id, '-.->|Summary|', relation.relation.mal_id]
 
         case 'Parent story':
         case 'Full story':
@@ -50,7 +46,7 @@ function mapRelation(parent: Work, relation: { work: Work, relation: Relation })
             return [null, null, null]
 
         default:
-            return dateOrdered(parent, relation, `-.-|${relation.relation.relation}|`)
+            return dateOrdered(parent, relation, `-.->|${relation.relation.relation}|`)
     }
 }
 
