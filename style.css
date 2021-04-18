@@ -84,6 +84,10 @@ ul a:hover {
     overflow: auto;
 }
 
+#mermaid-graph #mermaid-graph-inner span.edgeLabel {
+    background-color: var(--light);
+}
+
 g[id*='flowchart-'] rect+* {
     /*filthy dirty hack to prevent flickering as the overlapping objects all hover*/
     pointer-events: none;
