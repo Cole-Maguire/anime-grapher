@@ -106,6 +106,7 @@ ul a:visited {
 
 #mermaid-graph-inner {
     flex: 1 0 auto;
+    transition: transform 0.25s ease;
 }
 
 #mermaid-graph #mermaid-graph-inner span.edgeLabel {
