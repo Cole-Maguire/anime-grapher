@@ -61,6 +61,8 @@ h2 {
 
 form {
     display: grid;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 form>* {
