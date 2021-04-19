@@ -24,6 +24,9 @@ window.onload = () => {
   graph.addEventListener('mouseover', sidebar.mouseOverGraph);
   graph.addEventListener('mouseout', sidebar.mouseOutGraph);
 
+  document.querySelector("button#hide-sidebar")
+    .addEventListener('click', sidebar.hideSidebarListener);
+
   const searchbox: HTMLElement = document.querySelector("input#anime-id")
   const searchResults: HTMLElement = document.querySelector("#search-results")
   searchbox.addEventListener('input', e => sidebar.search(e, searchResults));

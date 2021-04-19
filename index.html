@@ -9,20 +9,23 @@
 
 <body>
     <div id="sidebar">
-        <header>
-            <h1>Anime Grapher</h1>
-            Visualize the relationships between anime in a series, using MyAnimeList
-        </header>
-        <form id="search">
-            <input id="anime-id" placeholder="Search for an anime by name" name="animeId" list="anime-suggestions">
-        </form>
-        <ul id="search-results"></ul>
         <div>
-            <h2>Graphed Works</h2>
-            <table id="work-list">
+            <header>
+                <h1>Anime Grapher</h1>
+                Visualize the relationships between anime in a series, using MyAnimeList
+            </header>
+            <form id="search">
+                <input id="anime-id" placeholder="Search for an anime by name" name="animeId" list="anime-suggestions">
+            </form>
+            <ul id="search-results"></ul>
+            <div>
+                <h2>Graphed Works</h2>
+                <table id="work-list">
 
-            </table>
+                </table>
+            </div>
         </div>
+        <button id="hide-sidebar">◀</button>
     </div>
     <div id="mermaid-graph">
         <svg id="mermaid-graph-inner"></svg>

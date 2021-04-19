@@ -88,3 +88,11 @@ function constructLink(a: AnimeSearchResult): HTMLElement {
 
     return li;
 }
+
+export function hideSidebarListener(e: Event) {
+    document.querySelector("#sidebar").classList.toggle('minimised')
+    const target = (e.target as HTMLButtonElement)
+
+    // toggle icon
+    target.textContent = target.textContent === '◀' ? '▶' : '◀'
+}
