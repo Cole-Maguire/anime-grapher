@@ -36,9 +36,9 @@ async function recurseWork(anime: Work, callback?: (c: WorkCache) => void): Prom
                 }
                 return relatedAnime
             })));
+            
     // We let the promises settle so that timeout work properly
-
-    relatedAnimeList.forEach(related => recurseWork(related, callback))
+    await Promise.all(relatedAnimeList.map(related => recurseWork(related, callback)))
 
 }
 
