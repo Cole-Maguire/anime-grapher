@@ -10,6 +10,11 @@
     --highlight: #8FB339;
 }
 
+
+* {
+    transition: background-color 0.25s ease;
+}
+
 html {
     height: 100%;
 }
