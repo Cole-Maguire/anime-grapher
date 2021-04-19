@@ -5,7 +5,8 @@ import * as malApi from './malApi';
 
 const graph: HTMLElement = document.querySelector("#mermaid-graph")
 const table: HTMLElement = document.querySelector("#work-list")
-const loading: HTMLElement = document.querySelector("#loading")
+const loading: HTMLElement = document.querySelector("#loading");
+const graphedTitle: HTMLElement = document.querySelector("h2@graphed-works");
 
 window.onload = () => {
   mermaid.initialize({
@@ -48,6 +49,7 @@ window.onload = () => {
 
 async function graphWork(workId: string) {
   loading.classList.remove('hidden')
+  graphedTitle.style.display = 'block';
   await malApi.startRecurse(workId,
     c => {
       graph.innerHTML = renderGraph(c);
