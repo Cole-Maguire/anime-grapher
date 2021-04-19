@@ -27,6 +27,11 @@ window.onload = () => {
   document.querySelector("button#hide-sidebar")
     .addEventListener('click', sidebar.hideSidebarListener);
 
+  document.querySelector("button#zoom-out")
+    .addEventListener('click', () => { zoomListener(-.1) });
+  document.querySelector("button#zoom-in")
+    .addEventListener('click', () => { zoomListener(.1) });
+
   const searchbox: HTMLElement = document.querySelector("input#anime-id")
   const searchResults: HTMLElement = document.querySelector("#search-results")
   searchbox.addEventListener('input', e => sidebar.search(e, searchResults));
@@ -52,3 +57,12 @@ async function graphWork(workId: string) {
     })
 }
 
+function zoomListener(multiplier: number) {
+  const svg: HTMLElement = document.querySelector("svg#mermaid-graph-inner");
+  const re = /scale\((?<factor>\d*\.?\d*)\)/
+  if (!re.test(svg.style.transform)) {
+    svg.style.transform = 'scale(1)'
+  }
+  const originalScale = svg.style.transform.match(re).groups.factor
+  svg.style.transform = `scale(${Number(originalScale) + multiplier})`;
+}

@@ -114,6 +114,13 @@ ul a:hover {
     background-color: var(--light);
     flex-grow: 1;
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mermaid-graph-inner {
+    flex: 1 0 auto;
 }
 
 #mermaid-graph #mermaid-graph-inner span.edgeLabel {
@@ -139,4 +146,17 @@ table {
 a,
 a:visited {
     color: var(--light);
+}
+
+#zoom-buttons {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+#zoom-buttons button {
+    width: 35px;
+    height: 35px;
+    font-weight: bolder;
+    font-size: 150%;
 }
