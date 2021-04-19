@@ -91,8 +91,10 @@ function constructLink(a: AnimeSearchResult): HTMLElement {
 
 export function hideSidebarListener(e: Event) {
     document.querySelector("#sidebar").classList.toggle('minimised')
-    const target = (e.target as HTMLButtonElement)
 
-    // toggle icon
+    const body = (document.querySelector("body") as HTMLElement)
+    body.style.gridTemplateColumns = body.style.gridTemplateColumns === '0fr 30px 3fr' ? '1fr 30px 3fr' : '0fr 30px 3fr'
+    
+    const target = (e.target as HTMLButtonElement)
     target.textContent = target.textContent === '◀' ? '▶' : '◀'
 }

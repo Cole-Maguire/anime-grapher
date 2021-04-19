@@ -24,31 +24,20 @@ body {
     background-color: var(--main);
     color: var(--light);
     font-family: 'Poppins', sans-serif;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 30px 3fr;
     height: 100%;
-
+    transition: 2s;
 }
 
 #sidebar {
-    padding: 0;
-    flex: 0 0 25%;
+    padding: 8px;
     overflow: auto;
-    display: grid;
-    grid-template-columns: 1fr 30px;
-    grid-gap: 5px;
 }
 
 #sidebar.minimised {
-    grid-template-columns: inherit;
-    flex: 0 0 auto;
-}
-
-#sidebar.minimised>div {
-    display: none;
-}
-
-#sidebar>div {
-    padding-left: 20px;
+    visibility: hidden;
+    padding: 0;
 }
 
 button#hide-sidebar {
