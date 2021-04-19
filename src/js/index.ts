@@ -56,7 +56,7 @@ async function graphWork(workId: string) {
 
       const highlightElement: HTMLElement = document.querySelector(`g [id*='flowchart-${workId}-'] rect`);
       highlightElement.style.stroke = '#D74E09'
-    })  
+    })
   loading.classList.add('hidden')
 }
 
@@ -66,6 +66,7 @@ function zoomListener(multiplier: number) {
   if (!re.test(svg.style.transform)) {
     svg.style.transform = 'scale(1)'
   }
-  const originalScale = svg.style.transform.match(re).groups.factor
-  svg.style.transform = `scale(${Number(originalScale) + multiplier})`;
+  const originalScale = Number(svg.style.transform.match(re).groups.factor)
+  //Scale to increase size, and translateX to make sure that we don't cut off the left hand edge
+  svg.style.transform = `scale(${originalScale + multiplier}) translateX(${100 * (originalScale+multiplier-1)}%)`;
 }
