@@ -5,6 +5,7 @@ import * as malApi from './malApi';
 
 const graph: HTMLElement = document.querySelector("#mermaid-graph")
 const table: HTMLElement = document.querySelector("#work-list")
+const loading: HTMLElement = document.querySelector("#loading")
 
 window.onload = () => {
   mermaid.initialize({
@@ -46,7 +47,8 @@ window.onload = () => {
 }
 
 async function graphWork(workId: string) {
-  malApi.startRecurse(workId,
+  loading.classList.remove('hidden')
+  await malApi.startRecurse(workId,
     c => {
       graph.innerHTML = renderGraph(c);
       table.innerHTML = '';
@@ -54,7 +56,8 @@ async function graphWork(workId: string) {
 
       const highlightElement: HTMLElement = document.querySelector(`g [id*='flowchart-${workId}-'] rect`);
       highlightElement.style.stroke = '#D74E09'
-    })
+    })  
+  loading.classList.add('hidden')
 }
 
 function zoomListener(multiplier: number) {
