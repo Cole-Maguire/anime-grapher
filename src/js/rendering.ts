@@ -18,7 +18,6 @@ export function renderGraph(workCache: WorkCache) {
     )
 
     const graphText = 'graph LR\n' + nodes.join('\n') + '\n' + Array.from(relations).join('\n')
-    console.log(graphText)
     return mermaid.mermaidAPI.render('mermaid-graph-inner', graphText);
 }
 
