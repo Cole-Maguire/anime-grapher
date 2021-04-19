@@ -94,10 +94,6 @@ ul a:visited {
     color: var(--dark);
 }
 
-ul a:hover {
-    color: var(--main-dark);
-}
-
 #mermaid-graph {
     height: 100%;
     background-color: var(--light);
@@ -137,6 +133,10 @@ a:visited {
     color: var(--light);
 }
 
+a:hover {
+    color: var(--highlight);
+}
+
 #zoom-buttons {
     position: absolute;
     right: 20px;
@@ -165,4 +165,15 @@ a:visited {
 
 #loading.hidden {
     display: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 12.5%;
+    transform: translateX(-50%);
+}
+
+footer img {
+    height: 0.9em;
 }
