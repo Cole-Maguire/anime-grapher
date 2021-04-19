@@ -137,6 +137,10 @@ a:hover {
     color: var(--highlight);
 }
 
+tr a:hover {
+    color: var(--light);
+}
+
 #zoom-buttons {
     position: absolute;
     right: 20px;
