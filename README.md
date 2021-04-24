@@ -1,6 +1,6 @@
 # README
 
-A tool to visualize the relationships between anime
+A tool to visualize the relationships between anime sequels, prequels, side-storys, adaptations and more!
 
 ## How to use
 
@@ -13,4 +13,4 @@ A tool to visualize the relationships between anime
 1. `git clone https://github.com/Cole-Maguire/anime-grapher`
 2. `npm install`
 3. `npm run-script build`
-4. Open `./index.html` in your favourite browser
+4. Open `./dist/index.html` in your favourite browser
