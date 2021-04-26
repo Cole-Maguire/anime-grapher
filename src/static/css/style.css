@@ -98,11 +98,8 @@ ul a:visited {
 #mermaid-graph {
     height: 100%;
     background-color: var(--light);
-    flex-grow: 1;
     overflow: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #mermaid-graph-inner {
