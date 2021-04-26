@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <script src="main.js" defer></script>
+    <title>Anime Grapher</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        <header>
+            <h1>Anime Grapher</h1>
+            Visualize the relationships between anime in a series, using MyAnimeList
+        </header>
+        <form id="search">
+            <input id="anime-id" placeholder="Search for an anime by name" name="animeId" list="anime-suggestions">
+        </form>
+        <ul id="search-results"></ul>
+        <div>
+            <h2 id="graphed-works" style="display:none">Graphed Works</h2>
+            <table id="work-list">
+
+            </table>
+        </div>
+        <footer>
+            <a href="https://github.com/cole.maguire"><img src="assets/GitHub-Mark-Light-32px.png"></a> |
+            <a href="https://colemaguire.me">Contact</a>
+        </footer>
+    </div>
+    <button id="hide-sidebar">◀</button>
+    <div id="mermaid-graph">
+        <svg id="mermaid-graph-inner"></svg>
+    </div>
+    <div id="zoom-buttons">
+        <button id="zoom-out">-</button>
+        <button id="zoom-in">+</button>
+    </div>
+    <div id="loading" class="hidden">
+        <div class="loader"></div>
+        Fetching Anime
+    </div>
+</body>
+
+</html>

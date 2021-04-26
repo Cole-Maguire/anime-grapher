@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Poppins:wght@300&display=swap');
+
+:root {
+    --light: #F2EFE9;
+    --dark: #2E2B27;
+
+    --main: #D74E09;
+    --main-dark: #944821;
+
+    --highlight: #8FB339;
+}
+
+
+* {
+    transition: background-color 0.25s ease;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--main);
+    color: var(--light);
+    font-family: 'Poppins', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 30px 3fr;
+    height: 100%;
+    transition: 2s;
+}
+
+#sidebar {
+    padding: 8px;
+    overflow: auto;
+}
+
+#sidebar.minimised {
+    visibility: hidden;
+    padding: 0;
+}
+
+button#hide-sidebar {
+    float: right;
+    background: none;
+    color: white;
+    border: 0;
+    border-left: 1px solid white;
+}
+
+button#hide-sidebar:hover {
+    background-color: var(--main-dark);
+}
+
+h1,
+h2 {
+    font-family: 'Dela Gothic One', sans-serif;
+    color: var(--light);
+    margin-bottom: 0;
+}
+
+form {
+    display: grid;
+    padding-top: 20px;
+}
+
+form>* {
+    padding: 9px;
+}
+
+input {
+    padding: 5px;
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    margin-bottom: 0;
+}
+
+ul {
+    position: fixed;
+
+    list-style-type: none;
+    background-color: var(--light);
+
+    border: 1px solid var(--dark);
+    margin-top: 0;
+    border-top: 0;
+}
+
+ul:empty {
+    visibility: hidden;
+}
+
+ul a,
+ul a:visited {
+    color: var(--dark);
+}
+
+#mermaid-graph {
+    height: 100%;
+    background-color: var(--light);
+    overflow: auto;
+    display: flex;
+}
+
+#mermaid-graph-inner {
+    flex: 1 0 auto;
+    transition: transform 0.25s ease;
+}
+
+#mermaid-graph #mermaid-graph-inner span.edgeLabel {
+    background-color: var(--light);
+}
+
+g[id*='flowchart-'] rect+* {
+    /*filthy dirty hack to prevent flickering as the overlapping objects all hover*/
+    pointer-events: none;
+}
+
+g[id*='flowchart-'] rect:hover,
+tr:hover {
+    background-color: var(--highlight);
+    fill: var(--highlight) !important;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+a,
+a:visited {
+    color: var(--light);
+}
+
+a:hover {
+    color: var(--highlight);
+}
+
+tr a:hover {
+    color: var(--light);
+}
+
+#zoom-buttons {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+#zoom-buttons button {
+    width: 35px;
+    height: 35px;
+    font-weight: bolder;
+    font-size: 150%;
+}
+
+#loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--dark);
+    opacity: 50%;
+    height: 288px;
+    width: 288px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#loading.hidden {
+    display: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 12.5%;
+    transform: translateX(-50%);
+}
+
+footer img {
+    height: 0.9em;
+}
